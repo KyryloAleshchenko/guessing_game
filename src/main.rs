@@ -7,6 +7,8 @@ fn main() {
     let secret_number: u32 = rand::random_range(1..=100);
     // println!("The secret number is: {}", secret_number);
 
+    let mut guess_count = 0;
+
     loop {
         println!("Intput your guess:");
         let mut guess: String = String::new();
@@ -20,11 +22,14 @@ fn main() {
             .expect("Please type a valid number!");
         println!("You guessed: {}", guess);
 
+        guess_count += 1;
+
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
             Ordering::Equal => {
                 println!("You guessed correctly!");
+                println!("It took you {} attempts to guess.", guess_count);
                 break;
             }
 
